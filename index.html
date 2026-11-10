@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Öğrenim Portföyü</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+:root{--bg:#f3f6fb;--panel:rgba(255,255,255,.8);--ink:#0e1a2b;--muted:#5b6b7e;--line:rgba(15,30,50,.1);--a1:#0ea5a0;--a2:#5b6cf2;--soft:rgba(14,165,160,.12);--on:#fff;--danger:#d64545;--sh:0 10px 30px rgba(20,40,80,.1)}
+:root[data-theme=dark]{--bg:#0a1018;--panel:rgba(22,32,46,.78);--ink:#eaf1f8;--muted:#92a4b8;--line:rgba(255,255,255,.1);--a1:#2dd4bf;--a2:#8b9bff;--soft:rgba(45,212,191,.14);--on:#04141a;--sh:0 10px 30px rgba(0,0,0,.45)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Segoe UI Variable",system-ui,sans-serif;transition:background .4s,color .4s;overflow-x:hidden}
+.blob{position:fixed;z-index:-1;border-radius:50%;filter:blur(90px);opacity:.35;animation:float 16s ease-in-out infinite alternate}
+.b1{width:480px;height:480px;background:var(--a1);top:-120px;left:-100px}.b2{width:520px;height:520px;background:var(--a2);bottom:-160px;right:-120px;animation-delay:-8s}
+@keyframes float{to{transform:translate(70px,50px) scale(1.15)}}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+.nav{position:sticky;top:0;z-index:5;backdrop-filter:blur(14px);background:var(--panel);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}.nav b{font-weight:700}
+.hero{padding:48px 0 18px}.warn{background:#fde8e8;color:#9b1c1c;padding:10px 14px;border-radius:10px;margin:0 0 18px}
+.top{display:flex;gap:26px;align-items:center}
+.av{flex:none;width:112px;height:112px;border-radius:50%;display:grid;place-items:center;font:700 2.4rem Georgia,serif;color:var(--on);background:linear-gradient(135deg,var(--a1),var(--a2));box-shadow:0 12px 34px rgba(91,108,242,.35)}
+.hero h1{font:700 clamp(2.1rem,6vw,3.6rem)/1.05 "Iowan Old Style",Georgia,serif;letter-spacing:-.02em;margin:0 0 10px}
+.uni{font-size:1.15rem;margin:0}.dep{color:var(--muted);margin:0 0 10px}
+.year{display:inline-block;background:var(--soft);color:var(--a1);font-weight:600;padding:3px 13px;border-radius:99px}
+.bio{max-width:62ch;color:var(--muted);margin:16px 0}
+.links{display:flex;gap:10px;flex-wrap:wrap}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:26px 0 8px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;backdrop-filter:blur(10px);transition:transform .25s}.stat:hover{transform:translateY(-3px)}
+.stat b{display:block;font-size:1.8rem;line-height:1.1}.stat span{color:var(--muted);font-size:.9rem}
+.btn{display:inline-flex;align-items:center;gap:6px;font:inherit;font-weight:600;cursor:pointer;text-decoration:none;border:0;color:var(--on);padding:9px 18px;border-radius:12px;background:linear-gradient(120deg,var(--a1),var(--a2));background-size:200% 100%;transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s,background-position .5s}
+.btn:hover{transform:translateY(-2px);background-position:100% 0;box-shadow:0 8px 20px rgba(91,108,242,.35)}.btn:active{transform:scale(.95)}
+.btn.ghost{background:var(--panel);color:var(--ink);border:1px solid var(--line)}.btn.ghost:hover{border-color:var(--a1);box-shadow:var(--sh)}
+.btn.small{padding:5px 13px;font-size:.88rem}.danger{color:var(--danger)}
+:focus-visible{outline:2px solid var(--a2);outline-offset:2px}
+.bar input[type=search]{width:100%;max-width:360px;padding:10px 16px;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink);font:inherit;transition:box-shadow .2s,border-color .2s}
+.bar input:focus{outline:0;border-color:var(--a1);box-shadow:0 0 0 4px var(--soft)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0}
+.chip{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:5px 15px;border-radius:99px;transition:all .2s}
+.chip:hover{border-color:var(--a1);color:var(--ink);transform:translateY(-1px)}.chip:active{transform:scale(.94)}
+.chip[aria-pressed=true]{background:linear-gradient(120deg,var(--a1),var(--a2));border-color:transparent;color:var(--on)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:22px;padding:22px 0 110px}
+.card{--tc:var(--a1);background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--tc);border-radius:16px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;backdrop-filter:blur(10px);animation:rise .5s both;animation-delay:calc(var(--i)*60ms);transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
+.card[data-t=Proje]{--tc:#5b6cf2}.card[data-t=Görsel]{--tc:#e0559a}.card[data-t=Video]{--tc:#e8913a}
+.card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(20,40,80,.18)}
+@keyframes rise{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+.media{aspect-ratio:16/9;background:#000;overflow:hidden}.media img,.media video,.media iframe{width:100%;height:100%;border:0;object-fit:cover;display:block;transition:transform .5s}
+.card:hover .media img{transform:scale(1.06)}
+.ph{display:grid;place-items:center;font-size:2.6rem;background:linear-gradient(135deg,color-mix(in srgb,var(--tc) 30%,transparent),transparent)}
+.body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.meta{display:flex;gap:10px;font-size:.85rem;color:var(--muted)}.tp{color:var(--tc,var(--a1));font-weight:700}
+.card h3{margin:0;font-size:1.15rem;line-height:1.3}
+.ex{margin:0;color:var(--muted);display:-webkit-box;-webkit-line-clamp:4;line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;white-space:pre-line}
+.tags{display:flex;flex-wrap:wrap;gap:6px}.tags span{font-size:.8rem;background:var(--soft);color:var(--a1);padding:2px 10px;border-radius:99px}
+.adm{display:flex;gap:8px;margin-top:auto;padding-top:6px}.card .btn.small{align-self:flex-start}
+.empty{grid-column:1/-1;color:var(--muted);padding:30px 0}
+.dock{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:6;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding:8px;border-radius:18px;background:var(--panel);border:1px solid var(--line);backdrop-filter:blur(14px);box-shadow:var(--sh);max-width:94vw;animation:rise .4s}
+dialog{border:1px solid var(--line);border-radius:18px;background:var(--bg);color:var(--ink);width:min(720px,94vw);max-height:90vh;padding:0;overflow:auto}
+dialog[open]{animation:pop .3s cubic-bezier(.2,.8,.2,1)}dialog::backdrop{background:rgba(6,12,20,.6);backdrop-filter:blur(4px)}
+@keyframes pop{from{opacity:0;transform:translateY(24px) scale(.96)}to{opacity:1;transform:none}}
+.dc{padding:22px 26px}.dc h2{margin:0 0 6px}.dc pre{background:#0b141c;color:#dbe7f1;padding:14px;border-radius:10px;overflow-x:auto;font:.9rem/1.5 ui-monospace,Consolas,monospace}
+.dc .media{border-radius:12px;margin:12px 0}.dc p{max-width:70ch}
+.dc label{display:block;font-weight:600;font-size:.9rem;margin:12px 0 4px}
+.dc input,.dc select,.dc textarea{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);font:inherit}
+.dc textarea{min-height:130px;resize:vertical}.acts{display:flex;gap:10px;justify-content:flex-end;margin-top:18px;flex-wrap:wrap}
+#toast{position:fixed;top:70px;left:50%;transform:translate(-50%,-20px);opacity:0;pointer-events:none;background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:12px;z-index:9;transition:all .3s}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+footer{border-top:1px solid var(--line);padding:22px 0 90px;color:var(--muted);font-size:.9rem}
+@media (max-width:640px){.top{flex-direction:column;align-items:flex-start}.stats{grid-template-columns:repeat(2,1fr)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.av{overflow:hidden}.av img{width:100%;height:100%;object-fit:cover}
+</style>
+</head>
+<body>
+<div class="blob b1"></div><div class="blob b2"></div>
+<nav class="nav"><div class="wrap"><b id="brand"></b><button class="btn ghost small" data-a="theme" aria-label="Tema">🌓 Tema</button></div></nav>
+<header class="wrap hero" id="hero"></header>
+<main class="wrap">
+  <div class="bar"><input id="q" type="search" placeholder="Notlarda, projelerde, videolarda ara" aria-label="Ara"></div>
+  <div class="chips" id="fType"></div><div class="chips" id="fCourse"></div>
+  <section class="grid" id="grid"></section>
+</main>
+<footer><div class="wrap" id="foot"></div></footer>
+<div class="dock" id="dock"></div><div id="toast"></div><dialog id="dlg"></dialog>
+<script src="data.js"></script>
+<script>
+const KEY="portfoy-v2",TYPES=["Tümü","Not","Proje","Görsel","Video"],ICON={Not:"📝",Proje:"🚀",Görsel:"🖼️",Video:"🎬"};
+const BASE=typeof SITE_DATA!=="undefined"?SITE_DATA:null;
+const DEF={profile:{name:"Adın Soyadın",university:"Üniversite",department:"Bölüm",year:"1. Sınıf",bio:"",links:[]},items:[]};
+const sig=s=>{let h=0;for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|0;return h};
+const baseSig=sig(JSON.stringify(BASE||DEF));
+let data=structuredClone(BASE||DEF),draft=false,fT="Tümü",fC="Tümü",q="",EDIT=new URLSearchParams(location.search).has("duzenle");
+try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.sig===baseSig){data=s.data;draft=true}}catch(e){}
+const $=s=>document.querySelector(s),dlg=$("#dlg");
+const LOCAL=location.protocol==="file:"||["localhost","127.0.0.1"].includes(location.hostname);if(!LOCAL){EDIT=false;$("#dock").style.display="none"}
+const setTheme=t=>{document.documentElement.dataset.theme=t;try{localStorage.setItem("portfoy-theme",t)}catch(e){}};
+let th;try{th=localStorage.getItem("portfoy-theme")}catch(e){}
+setTheme(th||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light"));
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const url=u=>/^(https?:|mailto:)/i.test(u)?esc(u):"#";
+const uid=()=>Date.now().toString(36);
+let tt;function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("on"),2600)}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify({sig:baseSig,data}));draft=true}catch(e){toast("Kayıt başarısız: depolama dolu. Görseli media/ klasörüne koy.")}};
+function fmt(t){return esc(t).split("```").map((p,i)=>i%2?`<pre>${p.replace(/^\n/,"")}</pre>`:p.split(/\n{2,}/).filter(x=>x.trim()).map(x=>`<p>${x.replace(/\n/g,"<br>")}</p>`).join("")).join("")}
+function media(it,ph){const m=it.media;if(!m)return ph?`<div class="media ph">${ICON[it.type]||"📄"}</div>`:"";
+ const y=m.match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/);
+ if(y)return `<div class="media"><iframe src="https://www.youtube-nocookie.com/embed/${y[1]}" title="${esc(it.title)}" loading="lazy" allowfullscreen></iframe></div>`;
+ if(/\.(mp4|webm)(\?|$)/i.test(m))return `<div class="media"><video src="${esc(m)}" controls preload="metadata"></video></div>`;
+ return `<div class="media"><img src="${esc(m)}" alt="${esc(it.title)}" loading="lazy"></div>`}
+function chips(el,list,cur,k){el.innerHTML=list.map(x=>`<button class="chip" aria-pressed="${x===cur}" data-k="${k}" data-v="${esc(x)}">${esc(x)}</button>`).join("")}
+
+function render(){
+  const p=data.profile,it=data.items,cnt=t=>it.filter(i=>i.type===t).length;
+  const ini=p.name.split(/\s+/).map(w=>w[0]||"").slice(0,2).join("").toUpperCase();
+  document.title=p.name+" | Öğrenim Portföyü";$("#brand").textContent=p.name;$("#foot").textContent=p.name+" · "+p.university;
+  $("#hero").innerHTML=`${BASE?"":`<p class="warn">data.js yüklenemedi. Dosyanın index.html ile aynı klasörde ve hatasız kaydedilmiş olduğunu kontrol et.</p>`}
+  <div class="top"><div class="av">${p.photo?`<img src="${esc(p.photo)}" alt="Profil fotoğrafı">`:esc(ini)}</div><div><h1>${esc(p.name)}</h1><p class="uni">🎓 ${esc(p.university)}</p><p class="dep">${esc(p.department)}</p><span class="year">${esc(p.year)}</span></div></div>
+  <p class="bio">${esc(p.bio)}</p><div class="links">${(p.links||[]).map(l=>`<a class="btn small" href="${url(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join("")}</div>
+  <div class="stats">${["Not","Proje","Görsel","Video"].map(t=>`<div class="stat"><b>${cnt(t)}</b><span>${ICON[t]} ${t}</span></div>`).join("")}</div>`;
+  $("#dock").innerHTML=(EDIT?`<button class="btn small" data-a="new">＋ Yeni ekle</button><button class="btn ghost small" data-a="prof">Profil</button><button class="btn ghost small" data-a="exp">Yayına al (data.js indir)</button>${draft?`<button class="btn ghost small danger" data-a="reset">Taslağı sıfırla</button>`:""}`:"")+`<button class="btn ${EDIT?"ghost ":""}small" data-a="tog">${EDIT?"✓ Bitti":"✎ Düzenle"}</button>`;
+  const courses=["Tümü",...new Set(it.map(i=>i.course).filter(Boolean))];
+  if(!courses.includes(fC))fC="Tümü";
+  chips($("#fType"),TYPES,fT,"t");chips($("#fCourse"),courses,fC,"c");
+  const list=it.filter(i=>(fT==="Tümü"||i.type===fT)&&(fC==="Tümü"||i.course===fC)&&(!q||[i.title,i.text,i.course,(i.tags||[]).join(" ")].join(" ").toLowerCase().includes(q)));
+  $("#grid").innerHTML=list.length?list.map((i,n)=>`<article class="card" data-t="${esc(i.type)}" data-id="${i.id}" style="--i:${n}">${media(i,1)}<div class="body"><div class="meta"><span class="tp">${esc(i.type)}</span><span>${esc(i.course)}</span></div><h3>${esc(i.title)}</h3><p class="ex">${esc((i.text||"").replace(/\`\`\`/g,""))}</p><div class="tags">${(i.tags||[]).map(t=>`<span>${esc(t)}</span>`).join("")}</div>${i.link?`<a class="btn small" href="${url(i.link)}" target="_blank" rel="noopener">Bağlantıyı aç</a>`:""}${EDIT?`<div class="adm"><button class="btn ghost small" data-a="edit">Düzenle</button><button class="btn ghost small danger" data-a="del">Sil</button></div>`:""}</div></article>`).join(""):`<p class="empty">Gösterilecek içerik yok. ✎ Düzenle ile ilk içeriğini ekle.</p>`;
+}
+
+function detail(it){
+  dlg.innerHTML=`<div class="dc"><h2>${esc(it.title)}</h2><div class="meta"><span class="tp">${esc(it.type)}</span><span>${esc(it.course)}</span></div>${media(it)}${fmt(it.text)}<div class="tags">${(it.tags||[]).map(t=>`<span>${esc(t)}</span>`).join("")}</div><div class="acts">${it.link?`<a class="btn" href="${url(it.link)}" target="_blank" rel="noopener">Bağlantıyı aç</a>`:""}<button class="btn ghost" data-a="close">Kapat</button></div></div>`;
+  dlg.showModal();
+}
+
+function itemForm(it){
+  const n=!it;it=it||{type:"Not",course:"",title:"",text:"",media:"",link:"",tags:[]};
+  const courses=[...new Set(data.items.map(i=>i.course).filter(Boolean))],has=it.media&&it.media.startsWith("data:");
+  dlg.innerHTML=`<form class="dc"><h2>${n?"Yeni içerik":"İçeriği düzenle"}</h2>
+  <label>Tür</label><select name="type">${TYPES.slice(1).map(t=>`<option ${t===it.type?"selected":""}>${t}</option>`).join("")}</select>
+  <label>Ders / kategori</label><input name="course" list="cl" value="${esc(it.course)}"><datalist id="cl">${courses.map(c=>`<option value="${esc(c)}">`).join("")}</datalist>
+  <label>Başlık</label><input name="title" required value="${esc(it.title)}">
+  <label>Açıklama (kod için \`\`\` ile çevir)</label><textarea name="text">${esc(it.text)}</textarea>
+  <label>YouTube linki, video (.mp4) veya resim adresi (örn. media/foto.jpg)</label><input name="media" value="${has?"":esc(it.media)}" placeholder="${has?"Yüklenen görsel kayıtlı":"https://www.youtube.com/watch?v=..."}">
+  <label>Ya da bilgisayardan görsel yükle</label><input type="file" id="up" accept="image/*">
+  <label>Bağlantı (GitHub, canlı demo)</label><input name="link" value="${esc(it.link)}">
+  <label>Etiketler (virgülle)</label><input name="tags" value="${esc((it.tags||[]).join(", "))}">
+  <div class="acts"><button type="button" class="btn ghost" data-a="close">Vazgeç</button><button class="btn">Kaydet</button></div></form>`;
+  let up=has?it.media:"";
+  $("#up").onchange=e=>{const f=e.target.files[0];if(!f)return;const im=new Image();im.onload=()=>{const s=Math.min(1,1000/im.width),c=document.createElement("canvas");c.width=im.width*s;c.height=im.height*s;c.getContext("2d").drawImage(im,0,0,c.width,c.height);up=c.toDataURL("image/jpeg",.8);toast("Görsel hazır, Kaydet'e bas")};im.src=URL.createObjectURL(f)};
+  dlg.querySelector("form").onsubmit=e=>{e.preventDefault();const v=Object.fromEntries(new FormData(e.target));
+    const o={id:it.id||uid(),type:v.type,course:v.course.trim(),title:v.title.trim(),text:v.text,media:v.media.trim()||up,link:v.link.trim(),tags:v.tags.split(",").map(s=>s.trim()).filter(Boolean)};
+    n?data.items.unshift(o):data.items[data.items.findIndex(x=>x.id===it.id)]=o;
+    save();dlg.close();render();toast("Kaydedildi")};
+  dlg.showModal();
+}
+
+
+function profForm(){
+  const p=data.profile,has=p.photo&&p.photo.startsWith("data:");
+  dlg.innerHTML=`<form class="dc"><h2>Profil</h2>
+  <label>Ad Soyad</label><input name="name" value="${esc(p.name)}"><label>Üniversite</label><input name="university" value="${esc(p.university)}">
+  <label>Bölüm</label><input name="department" value="${esc(p.department)}"><label>Sınıf</label><input name="year" value="${esc(p.year)}">
+  <label>Profil fotoğrafı adresi (örn. media/profil.jpg)</label><input name="photo" value="${has?"":esc(p.photo||"")}" placeholder="${has?"Yüklenen fotoğraf kayıtlı":""}">
+  <label>Ya da bilgisayardan fotoğraf yükle</label><input type="file" id="pup" accept="image/*">
+  <label>Kısa tanıtım</label><textarea name="bio">${esc(p.bio)}</textarea>
+  <label>Bağlantılar (her satır: Etiket | adres)</label><textarea name="links">${esc((p.links||[]).map(l=>l.label+" | "+l.url).join("\n"))}</textarea>
+  <div class="acts"><button type="button" class="btn ghost" data-a="close">Vazgeç</button><button class="btn">Kaydet</button></div></form>`;
+  let up=has?p.photo:"";
+  $("#pup").onchange=e=>{const f=e.target.files[0];if(!f)return;const im=new Image();im.onload=()=>{const s=Math.min(1,400/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*s;c.height=im.height*s;c.getContext("2d").drawImage(im,0,0,c.width,c.height);up=c.toDataURL("image/jpeg",.85);toast("Fotoğraf hazır, Kaydet'e bas")};im.src=URL.createObjectURL(f)};
+  dlg.querySelector("form").onsubmit=e=>{e.preventDefault();const v=Object.fromEntries(new FormData(e.target));
+    data.profile={name:v.name,university:v.university,department:v.department,year:v.year,photo:v.photo.trim()||up,bio:v.bio,links:v.links.split("\n").map(l=>l.split("|").map(s=>s.trim())).filter(a=>a[0]&&a[1]).map(a=>({label:a[0],url:a.slice(1).join("|").trim()}))};
+    save();dlg.close();render();toast("Profil kaydedildi")};
+  dlg.showModal();
+}function exportData(){
+  const b=new Blob(["const SITE_DATA = "+JSON.stringify(data,null,2)+";\n"],{type:"text/javascript"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="data.js";a.click();
+  toast("data.js indirildi. Klasördeki data.js ile değiştir.");
+}
+  const b=new Blob(["const SITE_DATA = "+JSON.stringify(data,null,2)+";\n"],{type:"text/javascript"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(b);
+document.addEventListener("click",e=>{
+  const c=e.target.closest(".chip");
+  if(c){c.dataset.k==="t"?fT=c.dataset.v:fC=c.dataset.v;return render()}
+  const b=e.target.closest("[data-a]"),card=e.target.closest(".card"),it=card&&data.items.find(x=>x.id===card.dataset.id);
+  if(b){const a=b.dataset.a;
+    if(a==="close")dlg.close();
+    else if(a==="theme")setTheme(document.documentElement.dataset.theme==="dark"?"light":"dark");
+    else if(a==="tog"){EDIT=!EDIT;render()}
+    else if(a==="new")itemForm();
+    else if(a==="prof")profForm();
+    else if(a==="exp")exportData();
+    else if(a==="reset"){if(confirm("Bu tarayıcıdaki taslak silinsin mi? data.js'deki içeriğe dönülür.")){localStorage.removeItem(KEY);location.reload()}}
+    else if(a==="edit"&&it)itemForm(it);
+    else if(a==="del"&&it&&confirm(`"${it.title}" silinsin mi?`)){data.items=data.items.filter(x=>x!==it);save();render();toast("Silindi")}
+    return}
+  if(card&&it&&!e.target.closest("a,iframe,video"))detail(it);
+  else if(e.target===dlg)dlg.close();
+});
+$("#q").addEventListener("input",e=>{q=e.target.value.trim().toLowerCase();render()});
+render();
+</script>
+</body>
+</html>
